@@ -65,6 +65,7 @@ export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
     //validation
+    console.log(req.body)
     if (!email || !password) {
       return res.status(404).send({
         success: false,
@@ -73,6 +74,7 @@ export const loginController = async (req, res) => {
     }
     //check user
     const user = await userModel.findOne({ email });
+    console.log(user)
     if (!user) {
       return res.status(404).send({
         success: false,
@@ -112,6 +114,44 @@ export const loginController = async (req, res) => {
     });
   }
 };
+
+
+//forgotPasswordController
+export const forgotPasswordController = async (req,res)=>{
+  try{
+    const {email,question,newPassword} = req.body
+    if(!email){
+      res.status(400).send({message:'Email is required'})
+    }
+    if(!answer){
+      res.status(400).send({message:'Answer is required'})
+    }
+    if(!newPassword){
+      res.status(400).send({message:'New Password is required'})
+    }
+    //check email n password
+    const user = await userModel.findOne({email,answer})
+    //validation
+    if(!user){
+      res.status(404).send({
+        success:false,
+        message:'Wrong Email or Answer'
+      })
+    }
+    //update new password and save to database
+    const hashed = await hashPassword(newPassword);
+    await userModel.findByIdAndUpdate(user._id,{password:hashed});
+    res.status(201).send({success:true,message:"Password Reset Successfully",});
+  }catch(error){
+    console.log(error)
+    res.status(500).send({
+      success:false,
+      message:'Something went wrong',
+      error
+    })
+  }
+};
+
 
 //test Controller
 export const testController = (req, res) => {
