@@ -20,3 +20,5 @@ const Orders = () => {
     </Layout>
   );
 };
+
+export default Orders;

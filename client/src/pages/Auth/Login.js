@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
+import axios from "axios";
+import api from "../../context/api";
+import { BackendUrl } from "../../App";
 import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
-import api from "../../context/api";
-
-
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,11 +19,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/api/v1/auth/login", {
+      const res = await api.post(`${BackendUrl}/v1/auth/login`, {
         email,
         password,
       });
-      console.log(res);
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
         setAuth({

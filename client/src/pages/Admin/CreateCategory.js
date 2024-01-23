@@ -5,6 +5,9 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm";
 import { Modal } from "antd";
+import api from "../../context/api";
+import { BackendUrl } from "../../App";
+
 
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -16,7 +19,7 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/v1/category/create-category", {
+      const { data } = await api.post(`{BackendUrl}/v1/category/create-category`, {
         name,
       });
       if (data?.success) {
@@ -34,13 +37,13 @@ const CreateCategory = () => {
   //get all cat
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const { data } = await api.get(`${BackendUrl}/v1/category/get-category`);
       if (data?.success) {
         setCategories(data?.category);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong in getting catgeory");
+      toast.error("Something wwent wrong in getting catgeory");
     }
   };
 
@@ -52,8 +55,8 @@ const CreateCategory = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put(
-        `/api/v1/category/update-category/${selected._id}`,
+      const { data } = await api.put(
+        `${BackendUrl}/v1/category/update-category/${selected._id}`,
         { name: updatedName }
       );
       if (data?.success) {
@@ -72,8 +75,8 @@ const CreateCategory = () => {
   //delete category
   const handleDelete = async (pId) => {
     try {
-      const { data } = await axios.delete(
-        `/api/v1/category/delete-category/${pId}`
+      const { data } = await api.delete(
+        `${BackendUrl}/v1/category/delete-category/${pId}`
       );
       if (data.success) {
         toast.success(`category is deleted`);
