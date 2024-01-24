@@ -35,11 +35,13 @@
 }
 
 .search-form {
+ 
   margin-right: 10px;
   margin-top: 4px;
 }
 .search-form input {
-  border: none;
+
+  border: double;
   border-radius: 0;
 }
 .search-form button {
@@ -135,6 +137,7 @@
 
 .dashboard {
   margin-top: 100px !important;
+
 }
 
 .dashboard-menu h4 {

@@ -19,7 +19,7 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await api.post(`{BackendUrl}/v1/category/create-category`, {
+      const { data } = await api.post(`${BackendUrl}/v1/category/create-category`, {
         name,
       });
       if (data?.success) {
