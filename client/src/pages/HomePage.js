@@ -109,7 +109,7 @@ const HomePage = () => {
     }
   };
   return (
-    <Layout title={"ALl Products - Best offers "}>
+    <Layout title={"All Products - Best offers "}>
       {/* banner image */}
       <img
         src="/images/banner.png"
@@ -118,8 +118,9 @@ const HomePage = () => {
         width={"100%"}
         
       />
+      
       {/* banner image */}
-      <div className="container-fluid row mt-3 home-page">
+      <div className="container-fluid row mt-0 home-page">
         <div className="col-md-3 filters">
           <h4 className="text-center">Filter By Category</h4>
           <div className="d-flex flex-column">
@@ -152,8 +153,8 @@ const HomePage = () => {
             </button>
           </div>
         </div>
-        <div className="col-md-9 ">
-          <h1 className="text-center">All Products</h1>
+        <div className="col-md-9 text-center">
+          <h1 className=" mt-3">All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
@@ -166,9 +167,9 @@ const HomePage = () => {
                   <div className="card-name-price">
                     <h5 className="card-title">{p.name}</h5>
                     <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
+                      {p.price.toLocaleString("en-IN", {
                         style: "currency",
-                        currency: "USD",
+                        currency: "INR",
                       })}
                     </h5>
                   </div>
