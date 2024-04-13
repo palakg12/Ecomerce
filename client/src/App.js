@@ -25,7 +25,7 @@ import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
 // export const BackendUrl ="http://localhost:8080/api";
-export const BackendUrl ="https://vishucopyhouse.onrender.com/";
+export const BackendUrl ="https://vishucopyhouse.onrender.com/api";
 
 function App() {
   return (
